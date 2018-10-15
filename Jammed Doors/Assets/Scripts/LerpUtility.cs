@@ -3,7 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LerpUtility {
+    public enum lerpMode
+    {
+        EaseOut, EaseIn, Exponential, Smooth, Smoother, linear
+    }
 
+    public static float Lerp(float currentLerpTime, float lerpTime,lerpMode mode = lerpMode.linear)
+    {
+        switch (mode)
+        {
+            case lerpMode.EaseOut:
+                return EaseOut(currentLerpTime, lerpTime);
+
+            case lerpMode.EaseIn:
+                return EaseIn(currentLerpTime, lerpTime);
+
+            case lerpMode.Exponential:
+                return Exponential(currentLerpTime, lerpTime);
+
+            case lerpMode.Smooth:
+                return Smooth(currentLerpTime, lerpTime);
+
+            case lerpMode.Smoother:
+                return Smoother(currentLerpTime, lerpTime);
+            default:
+                return currentLerpTime / lerpTime;
+                
+        }
+    }
     public static float EaseOut(float currentLerpTime, float lerpTime)
     {
         float t = currentLerpTime / lerpTime;
