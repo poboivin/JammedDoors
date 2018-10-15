@@ -9,7 +9,17 @@ public enum OffMeshLinkMoveMethod
     Parabola,
     Curve
 }
+public class SoundData
+{
+    public Vector3 Orgin;
+    public float Decibel;
 
+    public SoundData(Vector3 orgin, float decibel)
+    {
+        Orgin = orgin;
+        Decibel = decibel;
+    }
+}
 public class Monster : MonoBehaviour
 {
     public enum MonsterState
@@ -27,15 +37,19 @@ public class Monster : MonoBehaviour
     private Vector3 destination;
     [SerializeField]
     private Map map;
-
+   
     private bool OnOffLink = false;
+    SoundData target;
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawCube(destination, Vector3.one);
 
     }
-    
-	
+    public float waitTime = 6f;
+    [SerializeField]
+
+    private float waitTimer;
 	// Update is called once per frame
 	void Update ()
     {
@@ -64,10 +78,27 @@ public class Monster : MonoBehaviour
 
                 break;
             case MonsterState.Chase:
-
+                myAgent.destination = destination;
+                if (Vector3.Distance(myAgent.pathEndPosition, transform.position) <= myAgent.stoppingDistance)
+                {
+                    if(destination != target.Orgin)
+                    {
+                        destination = target.Orgin;
+                    }
+                    else
+                    {
+                        state = MonsterState.Wait;
+                    }
+                   
+                }
                 break;
             case MonsterState.Wait:
-
+                waitTimer -= Time.deltaTime;
+                if(waitTimer <= 0)
+                {
+                    waitTimer = waitTime;
+                    state = MonsterState.Wander;
+                }
                 break;
         }
     }
@@ -77,13 +108,33 @@ public class Monster : MonoBehaviour
     public AnimationCurve curve = new AnimationCurve();
     void Start()
     {
-       
-        destination = map.GetCurrentRoom(transform.position).transform.position;
+        waitTimer = waitTime;
+         destination = map.GetCurrentRoom(transform.position).transform.position;
         myAgent.destination = destination;
         StartCoroutine(OffNavMeshLinkFunc(myAgent));
        
     }
+    public void OnSoundHeard(SoundData data)
+    {
 
+
+        if (state != MonsterState.Chase)
+        {
+            waitTimer = waitTime;
+            destination = map.GetCurrentRoom(data.Orgin).transform.position;
+            state = MonsterState.Chase;
+            target = data;
+        }
+        else
+        {
+            if(target.Decibel < data.Decibel)
+            {
+                target = data;
+                destination = map.GetCurrentRoom(data.Orgin).transform.position;
+            }
+        }
+
+    }
     public IEnumerator OffNavMeshLinkFunc(NavMeshAgent agent)
     {
         agent.autoTraverseOffMeshLink = false;
@@ -102,7 +153,7 @@ public class Monster : MonoBehaviour
 
                 if (door != null)
                 {
-                    door.Open();
+                    door.MonsterBreak();
                 }
                 agent.CompleteOffMeshLink();
                 agent.ResetPath();
@@ -111,6 +162,7 @@ public class Monster : MonoBehaviour
             yield return null;
         }
     }
+
     IEnumerator NormalSpeed(NavMeshAgent agent)
     {
         OffMeshLinkData data = agent.currentOffMeshLinkData;

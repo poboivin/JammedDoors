@@ -20,12 +20,21 @@ public class Door : MonoBehaviour {
     [SerializeField]
     private Transform mesh;
     public UnityEvent OnDoorOpen;
+    public UnityEvent OnMonsterDoorOpen;
+
     public void Open()
     {
         mesh.gameObject.SetActive(false);
         obstacle.enabled = false;
         state = doorState.Open;
         OnDoorOpen.Invoke();
+    }
+    public void MonsterBreak()
+    {
+        mesh.gameObject.SetActive(false);
+        obstacle.enabled = false;
+        state = doorState.Broken;
+        OnMonsterDoorOpen.Invoke();
     }
 	// Use this for initialization
 	void Start () {
