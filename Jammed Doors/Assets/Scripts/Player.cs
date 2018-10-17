@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float interactRange = 1;
     public GameObject audioCam;
     static GameObject staticAudioCam;
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, RangeSmall);
@@ -56,11 +56,31 @@ public class Player : MonoBehaviour {
                 {
                     foreach (SoundDetector s in FindObjectsOfType<SoundDetector>())
                     {
-                        s.Hearing(transform.position, RangeBig);
+                        s.Hearing(transform.position, RangeSmall);
                     }
                     d.TryToUnlock();
                 }
             }
         }
-	}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position + transform.forward, interactRange);
+
+            foreach (Collider c in colliders)
+            {
+
+                Door d = c.GetComponentInParent<Door>();
+                //  Debug.Log("test"); 
+                if (d)
+                {
+                    foreach (SoundDetector s in FindObjectsOfType<SoundDetector>())
+                    {
+                        s.Hearing(transform.position, RangeBig);
+                    }
+                    d.PlayerBreak();
+                }
+            }
+        }
+    }
 }

@@ -22,10 +22,21 @@ public class Door : MonoBehaviour {
     public UnityEvent OnDoorOpen;
     public UnityEvent OnMonsterDoorOpen;
     public float doorFlashTime = 0.3f;
+
     public void TryToUnlock()
     {
         Player.ToggleFreezePlayer();
-        puzzle.SetActive(true);
+        if (puzzle.activeSelf == true)
+        {
+            puzzle.SetActive(false);
+
+        }
+        else if (puzzle.activeSelf == false)
+        {
+            puzzle.SetActive(true);
+          
+        }
+     
     }
     public void Open()
     {
@@ -33,6 +44,15 @@ public class Door : MonoBehaviour {
         obstacle.enabled = false;
         state = doorState.Open;
         OnDoorOpen.Invoke();
+    }
+    public void PlayerBreak()
+    {
+        mesh.gameObject.SetActive(false);
+        obstacle.enabled = false;
+        state = doorState.Broken;
+        OnMonsterDoorOpen.Invoke();
+        Debug.Log("breaking door");
+       // StartCoroutine(MonsterVisibility());
     }
     public void MonsterBreak()
     {
