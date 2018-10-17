@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 8c04b452f61f6e44d92095cb715d042b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 581ea9bce5de09c4dacb5785742c1b88, type: 2}
 --- !u!1001 &13263476
 Prefab:
   m_ObjectHideFlags: 0
@@ -1325,6 +1325,14 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 89.962006
       objectReference: {fileID: 0}
+    - target: {fileID: 4554799729347420, guid: 4cde476061dedb94b901aeb83679405e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332480373238654, guid: 4cde476061dedb94b901aeb83679405e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cde476061dedb94b901aeb83679405e, type: 2}
   m_IsPrefabAsset: 0
@@ -2371,13 +2379,26 @@ Prefab:
     - target: {fileID: 114061097890622794, guid: 73bdbfe6972741a4b8cd47e18b04beb3,
         type: 2}
       propertyPath: state
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 23854871004084362, guid: 73bdbfe6972741a4b8cd47e18b04beb3,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3173f10d68585b54bbbd84e97facdfb3, type: 2}
+    - target: {fileID: 4274917434364198, guid: 73bdbfe6972741a4b8cd47e18b04beb3, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23854871004084362, guid: 73bdbfe6972741a4b8cd47e18b04beb3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483199635716560, guid: 73bdbfe6972741a4b8cd47e18b04beb3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73bdbfe6972741a4b8cd47e18b04beb3, type: 2}
   m_IsPrefabAsset: 0
