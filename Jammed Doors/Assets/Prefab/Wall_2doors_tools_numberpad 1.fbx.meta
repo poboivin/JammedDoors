@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 3fb87955e03684c23a421dc87d9115ed
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Axe
+    100002: bolt_cutter
+    100004: Cable_Cutters
+    100006: Cube.1
+    100008: Cube.3
+    100010: EnterButton
+    100012: Hammer
+    100014: Light
+    100016: Light.1
+    100018: MetalDoor
+    100020: MetalFrame
+    100022: numberPad
+    100024: screen
+    100026: Wall1
+    100028: Wall2
+    100030: Wall3
+    100032: //RootNode
+    100034: wood Door
+    100036: WoodDoor
+    100038: WoodDoorFrame
+    400000: Axe
+    400002: bolt_cutter
+    400004: Cable_Cutters
+    400006: Cube.1
+    400008: Cube.3
+    400010: EnterButton
+    400012: Hammer
+    400014: Light
+    400016: Light.1
+    400018: MetalDoor
+    400020: MetalFrame
+    400022: numberPad
+    400024: screen
+    400026: Wall1
+    400028: Wall2
+    400030: Wall3
+    400032: //RootNode
+    400034: wood Door
+    400036: WoodDoor
+    400038: WoodDoorFrame
+    2100000: _16572_48_bolt_cutter_v1default
+    2100002: 10293_Hammer_diffuse_v1
+    2100004: Material.1
+    2100006: Material
+    2100008: No Name
+    2100010: EnterbuttonGreen
+    2100012: EnterbuttonGreen.1
+    2100014: Axe_1
+    2100016: Axe_2
+    2100018: Hinges
+    2100020: Outlines
+    2100022: DoorHandle
+    2100024: doorWood
+    2100026: Material.1.1
+    2100028: Material.001_Untitled
+    2100030: Mat
+    2100032: Mat.1
+    2100034: Mat.2
+    2300000: Axe
+    2300002: bolt_cutter
+    2300004: Cable_Cutters
+    2300006: Cube.1
+    2300008: Cube.3
+    2300010: EnterButton
+    2300012: Hammer
+    2300014: MetalDoor
+    2300016: MetalFrame
+    2300018: numberPad
+    2300020: screen
+    2300022: Wall1
+    2300024: Wall2
+    2300026: Wall3
+    2300028: WoodDoor
+    2300030: WoodDoorFrame
+    3300000: Axe
+    3300002: bolt_cutter
+    3300004: Cable_Cutters
+    3300006: Cube.1
+    3300008: Cube.3
+    3300010: EnterButton
+    3300012: Hammer
+    3300014: MetalDoor
+    3300016: MetalFrame
+    3300018: numberPad
+    3300020: screen
+    3300022: Wall1
+    3300024: Wall2
+    3300026: Wall3
+    3300028: WoodDoor
+    3300030: WoodDoorFrame
+    4300000: bolt_cutter
+    4300002: Hammer
+    4300004: Cable_Cutters
+    4300006: numberPad
+    4300008: Cube.1
+    4300010: screen
+    4300012: Cube.3
+    4300014: EnterButton
+    4300016: Axe
+    4300018: WoodDoor
+    4300020: WoodDoorFrame
+    4300022: MetalFrame
+    4300024: MetalDoor
+    4300026: Wall3
+    4300028: Wall2
+    4300030: Wall1
+    10800000: Light
+    10800002: Light.1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
