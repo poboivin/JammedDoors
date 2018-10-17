@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
     public float RangeSmall;
     public float RangeBig;
     public float interactRange = 1;
+    public GameObject audioCam;
+    static GameObject staticAudioCam;
 
     private void OnDrawGizmosSelected()
     {
@@ -16,11 +18,22 @@ public class Player : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        staticAudioCam = audioCam;
+
+    }
+    public static void ToggleSoundCam()
+    {
+        staticAudioCam.SetActive(!staticAudioCam.activeSelf);
+        
+    }
+	public static void ToggleFreezePlayer()
+    {
+        GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>().enabled = !GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController>().enabled;
+        GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.HeadBob>().enabled = !GameObject.FindObjectOfType<UnityStandardAssets.Characters.FirstPerson.HeadBob>().enabled;
+
+    }
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
@@ -38,10 +51,14 @@ public class Player : MonoBehaviour {
             {
 
                 Door d = c.GetComponentInParent<Door>();
-                Debug.Log("test");
+              //  Debug.Log("test"); 
                 if (d)
                 {
-                    d.Open();
+                    foreach (SoundDetector s in FindObjectsOfType<SoundDetector>())
+                    {
+                        s.Hearing(transform.position, RangeBig);
+                    }
+                    d.TryToUnlock();
                 }
             }
         }

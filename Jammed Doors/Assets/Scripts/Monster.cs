@@ -22,6 +22,7 @@ public class SoundData
 }
 public class Monster : MonoBehaviour
 {
+  
     public enum MonsterState
     {
         Wander,
@@ -31,6 +32,8 @@ public class Monster : MonoBehaviour
     }
     [SerializeField]
     MonsterState state;
+    [SerializeField]
+    private Animator MyAnimator;
     [SerializeField]
     private NavMeshAgent myAgent;
     [SerializeField]
@@ -53,6 +56,8 @@ public class Monster : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+
+        MyAnimator.SetFloat("velocity", myAgent.velocity.magnitude);
         switch (state)
         {
             case MonsterState.Wander:
@@ -64,13 +69,16 @@ public class Monster : MonoBehaviour
                     if( r != d.roomA)
                     {
                         destination = d.roomA.transform.position;
+                   //     Debug.Log("room b");
                     }
                     else
                     {
                         destination = d.roomB.transform.position;
+                    //    Debug.Log("room b");
                     }
-               
-                    myAgent.destination = destination ;
+      
+                    state = MonsterState.Wait;
+                   
 
                 }
                 break;
@@ -97,6 +105,7 @@ public class Monster : MonoBehaviour
                 if(waitTimer <= 0)
                 {
                     waitTimer = waitTime;
+                    myAgent.destination = destination;
                     state = MonsterState.Wander;
                 }
                 break;
@@ -142,6 +151,8 @@ public class Monster : MonoBehaviour
         {
             if (agent.isOnOffMeshLink)
             {
+                MyAnimator.SetTrigger("breakDoor");
+               
                 if (method == OffMeshLinkMoveMethod.NormalSpeed)
                     yield return StartCoroutine(NormalSpeed(agent));
                 else if (method == OffMeshLinkMoveMethod.Parabola)
@@ -149,12 +160,7 @@ public class Monster : MonoBehaviour
                 else if (method == OffMeshLinkMoveMethod.Curve)
                     yield return StartCoroutine(Curve(agent, 0.5f));
 
-                Door door = agent.currentOffMeshLinkData.offMeshLink.gameObject.GetComponent<Door>();
-
-                if (door != null)
-                {
-                    door.MonsterBreak();
-                }
+              
                 agent.CompleteOffMeshLink();
                 agent.ResetPath();
                 myAgent.SetDestination(destination);
@@ -168,9 +174,23 @@ public class Monster : MonoBehaviour
         OffMeshLinkData data = agent.currentOffMeshLinkData;
        
         Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
+        float delay = 0.5f;
+        bool once = true;
         while (agent.transform.position != endPos)
         {
             agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+             delay -= Time.deltaTime;
+            MyAnimator.SetFloat("velocity", agent.speed);
+            if (delay <= 0)
+            {
+                Door door = agent.currentOffMeshLinkData.offMeshLink.gameObject.GetComponent<Door>();
+
+                if (door != null && once)
+                {
+                    door.MonsterBreak();
+                    once = false;
+                }
+            }
             yield return null;
         }
     }
