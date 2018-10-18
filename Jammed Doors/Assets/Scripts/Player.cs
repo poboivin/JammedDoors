@@ -8,7 +8,8 @@ public class Player : MonoBehaviour {
     public float interactRange = 1;
     public GameObject audioCam;
     static GameObject staticAudioCam;
-    
+    public Rigidbody body;
+    public float velocity;
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, RangeSmall);
@@ -34,6 +35,14 @@ public class Player : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
+        velocity = body.velocity.magnitude;
+        if(velocity > 3.1f)
+        {
+            foreach (SoundDetector s in FindObjectsOfType<SoundDetector>())
+            {
+                s.Hearing(transform.position, RangeSmall);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
 

@@ -95,6 +95,19 @@ public class Monster : MonoBehaviour
                     }
                     else
                     {
+                        Collider[] colliders = Physics.OverlapSphere(transform.position + transform.forward, 2);
+
+                        foreach (Collider c in colliders)
+                        {
+
+                            Player d = c.GetComponentInParent<Player>();
+                            //  Debug.Log("test"); 
+                            if (d)
+                            {
+                                MyAnimator.SetTrigger("attack");
+                                Debug.Log("Player dead");
+                            }
+                        }
                         state = MonsterState.Wait;
                     }
                    
@@ -118,7 +131,8 @@ public class Monster : MonoBehaviour
     void Start()
     {
         waitTimer = waitTime;
-         destination = map.GetCurrentRoom(transform.position).transform.position;
+        Debug.Log(map.GetCurrentRoom(transform.position));
+        destination = map.GetCurrentRoom(transform.position).transform.position;
         myAgent.destination = destination;
         StartCoroutine(OffNavMeshLinkFunc(myAgent));
        
